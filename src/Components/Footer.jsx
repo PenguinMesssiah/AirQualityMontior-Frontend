@@ -1,0 +1,38 @@
+function Footer() {
+  const organizations = [
+    { name: "Arts Excusion Unlimited", url: "https://www.artsexcursionsunlimited.com/" },
+    { name: "Social Haptics Robotics & Education Lab", url: "https://shredlabcmu.github.io/" },
+    { name: "Will Scott Consulting", url: "https://wscott02.wixsite.com/wscott02" },
+  ]
+
+  return (
+    <footer className="mt-2 max-h-24 w-full bg-gray-900 border-t border-gray-700 py-6 px-4 rounded-md">
+      <div className="max-w-6xl mx-auto">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          
+          {/* Organizations Section */}
+          <div className="flex flex-wrap gap-6 justify-center">
+            {organizations.map((org, index) => (
+              <a 
+                key={index}
+                href={org.url} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="!text-blue-400 hover:!text-blue-300 transition-colors text-sm"
+              >
+                {org.name}
+              </a>
+            ))}
+          </div>
+
+          {/* Copyright */}
+          <div className="text-gray-400 text-sm">
+            © {new Date().getFullYear()} Air Quality Monitor
+          </div>
+        </div>
+      </div>
+    </footer>
+  )
+}
+
+export default Footer
