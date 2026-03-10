@@ -2,10 +2,10 @@ export const motivation = "We understand that the city of Pittsburgh, along with
 
 export const motivationSource = (
     <>
-        [1] Douglas H. Phelps, President and Executive Director, Phelps, D. H., & Director, P. and E. (2024, January 29). Cleaner Air in Steel City. The Public Interest Network
+        [1] Douglas H. Phelps, President and Executive Director, Phelps, D. H., & Director, P. and E. (2024, January 29). Cleaner Air in Steel City. The Public Interest Network  
         <a href="https://publicinterestnetwork.org/articles/cleaner-air-in-steel-city/"
             target="_blank">
-            https://publicinterestnetwork.org/articles/cleaner-air-in-steel-city/
+             https://publicinterestnetwork.org/articles/cleaner-air-in-steel-city/
         </a>
     </>
 );
