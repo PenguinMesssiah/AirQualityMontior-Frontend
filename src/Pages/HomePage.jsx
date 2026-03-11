@@ -1,5 +1,5 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
-import { motivation, motivationSource } from '@/text/homePage'
+import { motivation, motivationSource } from '@/text/textFile'
 import 'leaflet/dist/leaflet.css'
 
 function HomePage() {
@@ -24,7 +24,7 @@ function HomePage() {
               </Popup>
             </Marker>
           </MapContainer>
-          <p className="flex pt-6 font-medium text-2xl">Data-Driven Community-Informed Clean Air</p>
+          <p className="flex pt-6 font-medium text-2xl">Community Air Quality Tracking Using EPA AQI Standards</p>
           <p className="flex pt-2 font-normal pb-3 text-lg">Empowering everyone to gain control and understanding of their built environment.</p>
           <p className="flex text-justify">{motivation}</p>
           <p className="pt-2 italic">{motivationSource}</p>

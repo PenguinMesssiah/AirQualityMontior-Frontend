@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react'
+import BarChart from '@/Components/BarChart';
+import { EPA } from '@/text/textFile';
+import { EPA_Citations } from '@/text/textFile';
 
 const baseURL = "https://artsexcursionairquality.org"
+
 
 function ChartsPage() {
     const [data, setData]       = useState([]);
@@ -28,10 +32,16 @@ function ChartsPage() {
     
     return (
         <>
-        <main className="flex-1 min-w-full max-w-screen">
-            {loading && <p>Loading Charts</p>}
-            {!loading && <p>Charts Ready to Load</p>}
-        </main>
+            <main className="flex-1 w-full justify-center">
+                {loading && <p>Loading Charts</p>}
+                {!loading && (
+                    <BarChart title="Average AQI Values" data={data}></BarChart>
+                )}
+                <hr className='mt-6'></hr>
+                <p className="flex pt-6 font-medium text-2xl">Real-Time AQI Data Measured Against EPA Standards</p>
+                <p className="flex mt-3 text-justify">{EPA}</p>
+                <p className="pt-2 italic">{EPA_Citations}</p>
+            </main>
         </>
     )
 };

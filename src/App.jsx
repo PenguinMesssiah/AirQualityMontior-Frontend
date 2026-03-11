@@ -11,7 +11,7 @@ function AirQualityDashboard() {
     <>
     {/*Navbar*/}
       <NavBar></NavBar>
-      <main>
+      <main className="w-full">
         <Routes>
           <Route path="/" element={<HomePage></HomePage>}></Route>
           <Route path="/charts" element={<ChartsPage></ChartsPage>}></Route>
@@ -22,8 +22,5 @@ function AirQualityDashboard() {
     </>
   )
 }
-
-
-
 
 export default AirQualityDashboard
