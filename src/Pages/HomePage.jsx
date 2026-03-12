@@ -25,7 +25,7 @@ function HomePage() {
             </Marker>
           </MapContainer>
           <p className="flex pt-6 font-medium text-2xl">Community Air Quality Tracking Using EPA AQI Standards</p>
-          <p className="flex pt-2 font-normal pb-3 text-lg">Empowering everyone to gain control and understanding of their built environment.</p>
+          <p className="flex font-normal text-lg">Empowering everyone to gain control and understanding of their built environment.</p>
           <p className="flex text-justify">{motivation}</p>
           <p className="pt-2 italic">{motivationSource}</p>
         </main>

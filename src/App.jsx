@@ -3,8 +3,9 @@ import ChartsPage from './Pages/Charts'
 import AboutUs from './Pages/AboutUs'
 import NavBar from './Components/NavBar'
 import Footer from './Components/Footer'
-import './App.css'
 import { Routes, Route } from 'react-router-dom'
+import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function AirQualityDashboard() {
     return (
