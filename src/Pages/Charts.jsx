@@ -3,6 +3,7 @@ import BarChart from '@/Components/BarChart';
 import { EPA } from '@/text/textFile';
 import { EPA_Citations } from '@/text/textFile';
 import DeviceDropdown from '@/Components/Dropdown';
+import SpineChart from '@/Components/SpineChart';
 
 const baseURL = "https://artsexcursionairquality.org"
 
@@ -33,8 +34,11 @@ function ChartsPage() {
     useEffect(() => {
         //Null Check
         if (!selectedDevice || selectedDevice === "Average") {
+            setDeviceData([]);
             return;
         }
+
+        setDeviceData([]); //Clean Up
 
         const fetchDeviceData = async () => {
             try {
@@ -53,7 +57,7 @@ function ChartsPage() {
     }, [selectedDevice])
     
     useEffect(() => {
-        if(deviceData != null) {
+        if(deviceData.length > 0) {
             console.log("deviceData = ", deviceData)
         }
     },[deviceData])
@@ -74,8 +78,9 @@ function ChartsPage() {
                 {!loading && (selectedDevice===null || selectedDevice==="Average") && (
                     <BarChart title="Average AQI Values" data={data}></BarChart>
                 )}
-                {!loading && selectedDevice!==null && selectedDevice!=="Average" &&
-                    <p>Show Line Chart</p>
+                {!loading && selectedDevice!==null && selectedDevice!=="Average" && deviceData.length > 0 &&
+                    //<p>Load Spine Chart</p>
+                    <SpineChart title={`${selectedDevice} Data`} data={deviceData}></SpineChart>
                 }
                 <hr className='mt-6'></hr>
                 <p className="flex pt-6 font-medium text-2xl">Real-Time AQI Data Measured Against EPA Standards</p>
