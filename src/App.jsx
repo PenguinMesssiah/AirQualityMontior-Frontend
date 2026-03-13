@@ -9,10 +9,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function AirQualityDashboard() {
     return (
-    <>
+    <div className='flex flex-col min-h-screen'>
     {/*Navbar*/}
       <NavBar></NavBar>
-      <main className="w-full">
+      <main className="flex-grow w-full">
         <Routes>
           <Route path="/" element={<HomePage></HomePage>}></Route>
           <Route path="/charts" element={<ChartsPage></ChartsPage>}></Route>
@@ -20,7 +20,7 @@ function AirQualityDashboard() {
         </Routes>
       </main>
      <Footer/>
-    </>
+    </div>
   )
 }
 
