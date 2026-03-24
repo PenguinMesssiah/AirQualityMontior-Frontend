@@ -75,7 +75,7 @@ function ChartsPage() {
 
     return (
         <>
-            <main className="flex-1 w-full justify-center mt-2">
+            <main className="flex-1 w-full justify-center mt-2 font-mono text-indigo-900">
                 {alertMessage && (
                     <Alert
                         message={alertMessage}
@@ -90,7 +90,7 @@ function ChartsPage() {
                 )}
                 {!loading && selectedDevice!==null && selectedDevice!=="Average" && deviceData.length > 0 &&
                     //<p>Load Spine Chart</p>
-                    <SpineChart title={`${selectedDevice} Data`} data={deviceData}></SpineChart>
+                    <SpineChart title={`${selectedDevice}'s Data`} data={deviceData}></SpineChart>
                 }
                 <hr className='mt-6'></hr>
                 <p className="flex pt-6 font-medium text-2xl">Real-Time AQI Data Measured Against EPA Standards</p>
