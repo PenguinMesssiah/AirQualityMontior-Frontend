@@ -16,6 +16,7 @@ function BarChart({title, data}) {
     }
 
     const options = {
+            backgroundColor: "#fdfaf6",
             animationEnabled: true,
 			exportEnabled: true,
 			theme: "light2", //"light1", "dark1", "dark2"
@@ -59,7 +60,7 @@ function BarChart({title, data}) {
     
     return (
         <>
-        <div style={{ display:'flex', justifyContent: 'center', width: '800px', margin: '0 auto' }}>
+        <div style={{ display:'flex', justifyContent: 'center', width: '800px', margin: '0 auto',}}>
             <CanvasJSChart options={options}/>
         </div>
         </>

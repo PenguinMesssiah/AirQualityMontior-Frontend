@@ -6,7 +6,7 @@ function Footer() {
   ]
 
   return (
-    <footer className="mt-2 max-h-24 w-full bg-gray-900 border-t border-gray-700 py-6 px-4 rounded-md">
+    <footer className="mt-2 max-h-24 w-full bg-blue-200 border-gray-700  py-6 px-4 rounded-md">
       <div className="max-w-full mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           
@@ -18,7 +18,7 @@ function Footer() {
                 href={org.url} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="!text-blue-400 hover:!text-blue-300 transition-colors text-sm"
+                className="!text-blue-800 hover:!text-blue-500 transition-colors text-sm"
               >
                 {org.name}
               </a>
@@ -26,7 +26,7 @@ function Footer() {
           </div>
 
           {/* Copyright */}
-          <div className="text-gray-400 text-sm">
+          <div className="text-blue-500 text-sm">
             © {new Date().getFullYear()} Hazelwood Air Quality Monitor
           </div>
         </div>
