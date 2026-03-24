@@ -1,5 +1,32 @@
 /**
+ * Custom error class for retryable errors (network failures, 429, 5xx)
+ */
+class RetryableError extends Error {
+    constructor(status, message, customDelay = null) {
+        super(message);
+        this.name = 'RetryableError';
+        this.status = status;
+        this.customDelay = customDelay;  // For special cases like 429 (30s delay)
+    }
+}
+
+/**
+ * Custom error class for fatal errors that should not be retried (4xx except 429)
+ */
+class FatalError extends Error {
+    constructor(status, message) {
+        super(message);
+        this.name = 'FatalError';
+        this.status = status;
+    }
+}
+
+/**
  * Production-grade fetch utility with retry logic and specific error handling
+ *
+ * Architecture:
+ * - try block: Categorizes errors by throwing RetryableError or FatalError
+ * - catch block: Handles ALL retry logic in one place
  *
  * @param {string} url - The URL to fetch
  * @param {Object} options - Fetch options (method, headers, body, etc.)
@@ -18,43 +45,56 @@ export async function fetchWithRetry(url, options = {}, maxRetries = 3) {
             if (!response.ok) {
                 const errorDetails = await getErrorDetails(response, url);
 
+                // Categorize errors: Fatal (don't retry) vs Retryable (retry with backoff)
                 switch (response.status) {
                     case 400:
-                        throw new Error(`Bad Request: ${errorDetails}. Please check the request parameters.`);
+                        throw new FatalError(
+                            400,
+                            `Bad Request: ${errorDetails}. Please check the request parameters.`
+                        );
 
                     case 401:
-                        throw new Error(`Unauthorized: ${errorDetails}. Authentication is required.`);
+                        throw new FatalError(
+                            401,
+                            `Unauthorized: ${errorDetails}. Authentication is required.`
+                        );
 
                     case 403:
-                        throw new Error(`Forbidden: ${errorDetails}. You don't have permission to access this resource.`);
+                        throw new FatalError(
+                            403,
+                            `Forbidden: ${errorDetails}. You don't have permission to access this resource.`
+                        );
 
                     case 404:
-                        throw new Error(`Not Found: The requested resource could not be found. ${errorDetails}`);
+                        throw new FatalError(
+                            404,
+                            `Not Found: The requested resource could not be found. ${errorDetails}`
+                        );
 
                     case 429:
-                        // Rate limiting - wait 30 seconds and retry
-                        if (attempt < maxRetries) {
-                            console.warn(`Rate limited (429). Waiting 30 seconds before retry ${attempt + 1}/${maxRetries}...`);
-                            await sleep(30000);
-                            continue;
-                        }
-                        throw new Error(`Too Many Requests: Rate limit exceeded. Please try again later.`);
+                        // Rate limiting - needs special 30 second delay before retry
+                        throw new RetryableError(
+                            429,
+                            `Too Many Requests: Rate limit exceeded. Please try again later.`,
+                            30000  // Custom 30s delay
+                        );
 
                     case 500:
                     case 502:
                     case 503:
                     case 504:
-                        // Server errors - retry with backoff
-                        if (attempt < maxRetries) {
-                            const delay = calculateBackoff(attempt);
-                            console.warn(`Server error (${response.status}). Retrying in ${delay/1000}s... (${attempt + 1}/${maxRetries})`);
-                            await sleep(delay);
-                            continue;
-                        }
-                        throw new Error(`Server Error (${response.status}): ${errorDetails}. The server is experiencing issues. Please try again later.`);
+                        // Server errors - retry with exponential backoff
+                        throw new RetryableError(
+                            response.status,
+                            `Server Error (${response.status}): ${errorDetails}. The server is experiencing issues. Please try again later.`
+                        );
 
                     default:
-                        throw new Error(`HTTP Error ${response.status}: ${errorDetails}`);
+                        // Unknown error - treat as retryable
+                        throw new RetryableError(
+                            response.status,
+                            `HTTP Error ${response.status}: ${errorDetails}`
+                        );
                 }
             }
 
@@ -64,27 +104,39 @@ export async function fetchWithRetry(url, options = {}, maxRetries = 3) {
         } catch (error) {
             lastError = error;
 
-            // Don't retry on specific errors (4xx except 429)
-            if (error.message.includes('Bad Request') ||
-                error.message.includes('Unauthorized') ||
-                error.message.includes('Forbidden') ||
-                error.message.includes('Not Found')) {
+            // 1. Fatal errors should NEVER be retried (4xx errors)
+            if (error instanceof FatalError) {
                 throw error;
             }
 
-            // Network errors or server errors - retry with backoff
-            if (attempt < maxRetries) {
-                const delay = calculateBackoff(attempt);
-                console.warn(`Network error. Retrying in ${delay/1000}s... (${attempt + 1}/${maxRetries})`, error.message);
+            // 2. Retryable errors - retry with backoff if attempts remaining
+            if (error instanceof RetryableError && attempt < maxRetries) {
+                const delay = error.customDelay || calculateBackoff(attempt);
+                const errorType = error.status === 429
+                    ? 'Rate limit'
+                    : error.status >= 500
+                        ? 'Server error'
+                        : 'Error';
+                console.warn(`${errorType} (${error.status}). Retrying in ${delay/1000}s... (${attempt + 1}/${maxRetries})`);
                 await sleep(delay);
-                continue;
+                continue;  // Retry
             }
 
-            // Max retries exceeded
-            if (error.message.includes('Failed to fetch') || error.message.includes('Network')) {
-                throw new Error(`Network Error: Unable to connect to the server. Please check your internet connection and try again.`);
+            // 3. Network errors (fetch failed completely) - retry with backoff
+            //    These are native errors from fetch itself, not our custom errors
+            if (!(error instanceof RetryableError) && !(error instanceof FatalError)) {
+                if (attempt < maxRetries) {
+                    const delay = calculateBackoff(attempt);
+                    console.warn(`Network error. Retrying in ${delay/1000}s... (${attempt + 1}/${maxRetries})`, error.message);
+                    await sleep(delay);
+                    continue;  // Retry
+                }
+
+                // Max retries exceeded for network error
+                throw new Error(`Network Error: Unable to connect to the server. Please check your internet connection and try again. (${error.message})`);
             }
 
+            // 4. Max retries exceeded for retryable error
             throw error;
         }
     }
