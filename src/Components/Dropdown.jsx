@@ -15,7 +15,7 @@ function DeviceDropdown({deviceNames, onDeviceSelect}) {
 
     return (
     <Dropdown className="flex justify-end">
-      <Dropdown.Toggle variant="info" id="dropdown-basic" size="lg">
+      <Dropdown.Toggle variant="secondary" id="dropdown-basic" size="lg">
         {selectedDevice}
       </Dropdown.Toggle>
 

@@ -1,29 +1,33 @@
-import { useState, useEffect, use } from 'react'
+import { useState, useEffect } from 'react'
 import BarChart from '@/Components/BarChart';
 import { EPA } from '@/text/textFile';
 import { EPA_Citations } from '@/text/textFile';
 import DeviceDropdown from '@/Components/Dropdown';
 import SpineChart from '@/Components/SpineChart';
+import Alert from '@/Components/Alert';
+import { fetchJsonWithRetry } from '@/utils/fetchWithRetry';
 
 const baseURL = "https://artsexcursionairquality.org"
 
 function ChartsPage() {
     const [data, setData]       = useState([]);
     const [loading, setLoading] = useState(false);
-    const [error, setError]     = useState(null);
     const [selectedDevice, setSelectedDevice] = useState(null);
     const [deviceData, setDeviceData] = useState([]);
+    const [alertMessage, setAlertMessage] = useState(null);
 
     useEffect(() => {
         const fetchAllData = async () => {
             try {
-                const response = await fetch(`${baseURL}/sensor_data`);
-                if(!response.ok) throw Error("Failed to Fetch Sensor Data, Check Server Status");
-                const json = await response.json();
+                setLoading(true);
+                setAlertMessage(null);
+
+                const json = await fetchJsonWithRetry(`${baseURL}/sensor_data`);
                 console.log("received data = ", json)
                 setData(json);
             } catch (err) {
-                setError(err instanceof Error ? err.message : "Unknown Error Fetching Average Data")
+                const errorMsg = err instanceof Error ? err.message : "Unknown Error Fetching Average Data";
+                setAlertMessage(errorMsg);
             } finally {
                 setLoading(false);
             }
@@ -43,12 +47,13 @@ function ChartsPage() {
         const fetchDeviceData = async () => {
             try {
                 setLoading(true);
-                const response = await fetch(`${baseURL}/sensor_data/${selectedDevice}`); //sensor_data/<device_name>
-                if(!response.ok) throw Error(`Failed to Fetch Device Data for ${selectedDevice}`);
-                const json = await response.json();
+                setAlertMessage(null);
+
+                const json = await fetchJsonWithRetry(`${baseURL}/sensor_data/${selectedDevice}`);
                 setDeviceData(json);
             } catch (err) {
-                setError(err instanceof Error ? err.message : "Unknown Error Retrieving Device Data");
+                const errorMsg = err instanceof Error ? err.message : "Unknown Error Retrieving Device Data";
+                setAlertMessage(errorMsg);
             } finally {
                 setLoading(false);
             }
@@ -68,12 +73,17 @@ function ChartsPage() {
 
     const deviceNames = ["Average", ...data.map(item => item.device_name)];
 
-    if (error) return <p>{error}</p>;
-    
     return (
         <>
             <main className="flex-1 w-full justify-center mt-2">
-                <DeviceDropdown deviceNames={deviceNames} onDeviceSelect={handleSelect}></DeviceDropdown>                    
+                {alertMessage && (
+                    <Alert
+                        message={alertMessage}
+                        variant="danger"
+                        onClose={() => setAlertMessage(null)}
+                    />
+                )}
+                <DeviceDropdown deviceNames={deviceNames} onDeviceSelect={handleSelect}></DeviceDropdown>
                 {loading && <p>Loading Charts</p>}
                 {!loading && (selectedDevice===null || selectedDevice==="Average") && (
                     <BarChart title="Average AQI Values" data={data}></BarChart>
