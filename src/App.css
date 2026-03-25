@@ -1,5 +1,5 @@
 #root {
-  max-width: 100%;
+  min-width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -7,7 +7,6 @@
   text-align: left;
   flex: 1;
   place-items: start;
-  padding-right: 3.5rem;
 }
 
 #map {

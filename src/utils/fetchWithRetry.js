@@ -122,8 +122,7 @@ export async function fetchWithRetry(url, options = {}, maxRetries = 3) {
                 continue;  // Retry
             }
 
-            // 3. Network errors (fetch failed completely) - retry with backoff
-            //    These are native errors from fetch itself, not our custom errors
+            // 3. Network errors - retry with backoff
             if (!(error instanceof RetryableError) && !(error instanceof FatalError)) {
                 if (attempt < maxRetries) {
                     const delay = calculateBackoff(attempt);

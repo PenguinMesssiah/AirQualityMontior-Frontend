@@ -7,7 +7,7 @@ function NavBar () {
             <Container>
                 <Navbar.Brand as={Link} to="/">
                     <img
-                        src="/src/assets/AEU1_scaled.png"
+                        src="/src/assets/photos/AEU1_scaled.png"
                         width="30"
                         height="30"
                         className="d-inline-block align-top"
@@ -24,7 +24,7 @@ function NavBar () {
                             Charts
                         </Nav.Link>
                         <Nav.Link as={Link} to="/aboutUs" className='!text-blue-800 hover:!text-blue-500'>
-                            About
+                            About Us
                         </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>

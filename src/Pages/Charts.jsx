@@ -86,16 +86,16 @@ function ChartsPage() {
                 <DeviceDropdown deviceNames={deviceNames} onDeviceSelect={handleSelect}></DeviceDropdown>
                 {loading && <p>Loading Charts</p>}
                 {!loading && (selectedDevice===null || selectedDevice==="Average") && (
-                    <BarChart title="Average AQI Values" data={data}></BarChart>
+                    <BarChart title="Average AQI (PM2.5) Values" data={data}></BarChart>
                 )}
                 {!loading && selectedDevice!==null && selectedDevice!=="Average" && deviceData.length > 0 &&
                     //<p>Load Spine Chart</p>
                     <SpineChart title={`${selectedDevice}'s Data`} data={deviceData}></SpineChart>
                 }
-                <hr className='mt-6'></hr>
-                <p className="flex pt-6 font-medium text-2xl">Real-Time AQI Data Measured Against EPA Standards</p>
+                <hr className=''></hr>
+                <p className="flex font-medium text-2xl">Real-Time AQI Data Measured Against EPA Standards</p>
                 <p className="flex mt-3 text-justify">{EPA}</p>
-                <p className="pt-2 italic">{EPA_Citations}</p>
+                <p className=" italic">{EPA_Citations}</p>
             </main>
         </>
     )
