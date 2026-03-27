@@ -26,8 +26,8 @@ function HomePage() {
           </MapContainer>
           <hr></hr>
           <p className="flex  font-medium text-2xl">Community Air Quality Tracking Using EPA AQI Standards</p>
-          <p className="flex text-justify">{motivation}</p>
-          <p className="italic">{motivationSource}</p>
+          <div className="flex text-justify">{motivation}</div>
+          <div className="italic">{motivationSource}</div>
         </main>
     </>
   )

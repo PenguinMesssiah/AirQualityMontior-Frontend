@@ -11,7 +11,7 @@ function NavBar () {
                         width="30"
                         height="30"
                         className="d-inline-block align-top"
-                        alt="AEU Logo"
+                        alt="Arts Excusion Unlimited"
                     />
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />

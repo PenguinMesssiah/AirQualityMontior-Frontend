@@ -17,7 +17,7 @@ export const motivationSource = (
 );
 
 export const EPA = (
-    <p>
+    <div>
         The <b>U.S. Air Quality Index (AQI) is a standardized scale developed by the Environmental Protection Agency (EPA)</b> to communicate how clean or polluted outdoor air is and what health effects people might experience. 
         The index runs from 0 to 500, with higher values indicating greater pollution and greater health risk. 
         <b> It is divided into six color-coded categories:</b>
@@ -32,7 +32,7 @@ export const EPA = (
         An AQI value of 100 generally corresponds to the level of the short-term National Ambient Air Quality Standard for a given pollutant, meaning values at or below 100 are generally considered satisfactory. 
         The EPA tracks five major pollutants regulated under the Clean Air Act: ground-level ozone, particulate matter (PM2.5 and PM10), carbon monoxide, nitrogen dioxide, and sulfur dioxide. While air pollution can affect anyone, children, older adults, people with asthma or cardiovascular disease, and those who work or exercise outdoors are particularly vulnerable.
         <b> Our system tracks temperature, humidity, and particle matter (PM2.5).</b>
-    </p>
+    </div>
 );
 
 export const EPA_Citations= (

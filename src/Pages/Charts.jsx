@@ -94,8 +94,8 @@ function ChartsPage() {
                 }
                 <hr className=''></hr>
                 <p className="flex font-medium text-2xl">Real-Time AQI Data Measured Against EPA Standards</p>
-                <p className="flex mt-3 text-justify">{EPA}</p>
-                <p className=" italic">{EPA_Citations}</p>
+                <div className="flex mt-3 text-justify">{EPA}</div>
+                <div className=" italic">{EPA_Citations}</div>
             </main>
         </>
     )
