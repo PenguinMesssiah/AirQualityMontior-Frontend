@@ -2,15 +2,16 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import AEUCarousel from '@/Components/AEUCarousel';
 import AirQualityCurriculum from '@/Components/AirQualityCurriculum';
+import CommunityVoices from '@/Components/CommunityVoices';
 
 function AboutUs() {
     return (
             <>
-                <div className='font-mono'>
+                <div className='font-sans text-indigo-900'>
                     <Tabs
                         defaultActiveKey="Us"
                         id="AboutUsTab"
-                        className="mb-3 font-mono"
+                        className="mb-3 font-sans"
                         fill
                     >
                         <Tab eventKey="Us" title="Overview | Who Are We?">
@@ -26,7 +27,7 @@ function AboutUs() {
                             
                         </Tab>
                         <Tab eventKey="Project" title="Description | What is this Project?">
-                            <p className="flex pt-1 font-semibold text-2xl">Community-Driven Air Quality Tracking Using EPA AQI Standards</p>
+                            <p className="flex pt-1 font-semibold text-3xl">Community-Driven Air Quality Tracking Using EPA AQI Standards</p>
                             <p>
                                 This workshop series served local community members, regardless of age, to learn fundamental engineering
                                 and software concepts to develop a cluster of air quality monitoring units to better
@@ -41,7 +42,8 @@ function AboutUs() {
                             </p>
 
                             <hr></hr>
-                            <p className="flex pt-1 font-semibold text-2xl">Results</p>
+                            <p className="flex pt-1 font-semibold text-3xl">Results</p>
+                            <CommunityVoices></CommunityVoices>
                         </Tab>
                         <Tab eventKey="How" title="Resources | How did we do it?">
                             Tab content for Slides & Assembly Photos 
