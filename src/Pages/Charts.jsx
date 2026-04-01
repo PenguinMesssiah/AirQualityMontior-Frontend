@@ -15,6 +15,7 @@ function ChartsPage() {
     const [selectedDevice, setSelectedDevice] = useState(null);
     const [deviceData, setDeviceData] = useState([]);
     const [alertMessage, setAlertMessage] = useState(null);
+    const [timeRangeDays, setTimeRangeDays] = useState(30);
 
     useEffect(() => {
         const fetchAllData = async () => {
@@ -75,7 +76,7 @@ function ChartsPage() {
 
     return (
         <>
-            <main className="flex-1 w-full justify-center mt-2 font-mono text-indigo-900">
+            <main className="flex-1 w-full justify-center mt-2 font-sans text-indigo-900">
                 {alertMessage && (
                     <Alert
                         message={alertMessage}
@@ -83,14 +84,41 @@ function ChartsPage() {
                         onClose={() => setAlertMessage(null)}
                     />
                 )}
-                <DeviceDropdown deviceNames={deviceNames} onDeviceSelect={handleSelect}></DeviceDropdown>
+
+                {/* Device and Time Range Selectors */}
+                <div className="flex justify-end items-center gap-4 mb-2">
+                    <DeviceDropdown deviceNames={deviceNames} onDeviceSelect={handleSelect}></DeviceDropdown>
+
+                    {/* Time Range Selector*/}
+                    {selectedDevice!==null && selectedDevice!=="Average" && (
+                        <div className="flex justify-start items-center gap-2">
+                            <label className="font-medium">Time Range:</label>
+                            <select
+                                value={timeRangeDays}
+                                onChange={(e) => setTimeRangeDays(Number(e.target.value))}
+                                className="px-3 py-1 border border-gray-300 rounded-md bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            >
+                                <option value={7}>Last 7 Days</option>
+                                <option value={14}>Last 14 Days</option>
+                                <option value={30}>Last 30 Days</option>
+                                <option value={60}>Last 60 Days</option>
+                                <option value={90}>Last 90 Days</option>
+                                <option value={365}>Last Year</option>
+                            </select>
+                        </div>
+                    )}
+                </div>
+
                 {loading && <p>Loading Charts</p>}
                 {!loading && (selectedDevice===null || selectedDevice==="Average") && (
                     <BarChart title="Average AQI (PM2.5) Values" data={data}></BarChart>
                 )}
                 {!loading && selectedDevice!==null && selectedDevice!=="Average" && deviceData.length > 0 &&
-                    //<p>Load Spine Chart</p>
-                    <SpineChart title={`${selectedDevice}'s Data`} data={deviceData}></SpineChart>
+                    <SpineChart
+                        title={`${selectedDevice}'s Data`}
+                        data={deviceData}
+                        timeRangeDays={timeRangeDays}
+                    ></SpineChart>
                 }
                 <hr className=''></hr>
                 <p className="flex font-medium text-2xl">Real-Time AQI Data Measured Against EPA Standards</p>

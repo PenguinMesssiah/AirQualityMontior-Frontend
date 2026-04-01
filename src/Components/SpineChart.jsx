@@ -11,7 +11,21 @@ function celsiusToFahrenheit(celsius) {
     return (celsius * 9/5) + 32;
 }
 
-function SpineChart({title, data}) {
+function SpineChart({title, data, timeRangeDays = 30}) {
+    /**
+     * Filter data points to only include recent readings within the specified time range
+     * This prevents misleading visualizations when there are large gaps in the data
+     */
+    const filterRecentData = (values, days) => {
+        const cutoffDate = new Date();
+        cutoffDate.setDate(cutoffDate.getDate() - days);
+
+        return values.filter(item => {
+            const itemDate = new Date(item.timestamp);
+            return itemDate >= cutoffDate;
+        });
+    };
+
     // Filter data by type
     const rawTemperatureData = data.filter((item) => item.type === "temperature");
     const rawHumidityData = data.filter((item) => item.type === "humidity");
@@ -20,10 +34,11 @@ function SpineChart({title, data}) {
     // Process Temperature data (convert Celsius to Fahrenheit)
     const temperatureDataPoints = [];
     for (let i = 0; i < rawTemperatureData.length; i++) {
-        for (let j = 0; j < rawTemperatureData[i].values.length; j++) {
-            const celsiusValue = rawTemperatureData[i].values[j].value;
+        const recentValues = filterRecentData(rawTemperatureData[i].values, timeRangeDays);
+        for (let j = 0; j < recentValues.length; j++) {
+            const celsiusValue = recentValues[j].value;
             temperatureDataPoints.push({
-                x: new Date(rawTemperatureData[i].values[j].timestamp),
+                x: new Date(recentValues[j].timestamp),
                 y: celsiusToFahrenheit(celsiusValue)
             });
         }
@@ -32,10 +47,11 @@ function SpineChart({title, data}) {
     // Process Humidity data
     const humidityDataPoints = [];
     for (let i = 0; i < rawHumidityData.length; i++) {
-        for (let j = 0; j < rawHumidityData[i].values.length; j++) {
+        const recentValues = filterRecentData(rawHumidityData[i].values, timeRangeDays);
+        for (let j = 0; j < recentValues.length; j++) {
             humidityDataPoints.push({
-                x: new Date(rawHumidityData[i].values[j].timestamp),
-                y: rawHumidityData[i].values[j].value
+                x: new Date(recentValues[j].timestamp),
+                y: recentValues[j].value
             });
         }
     }
@@ -43,18 +59,35 @@ function SpineChart({title, data}) {
     // Process AQI data
     const aqiDataPoints = [];
     for (let i = 0; i < rawAQIData.length; i++) {
-        for (let j = 0; j < rawAQIData[i].values.length; j++) {
+        const recentValues = filterRecentData(rawAQIData[i].values, timeRangeDays);
+        for (let j = 0; j < recentValues.length; j++) {
             aqiDataPoints.push({
-                x: new Date(rawAQIData[i].values[j].timestamp),
-                y: rawAQIData[i].values[j].value
+                x: new Date(recentValues[j].timestamp),
+                y: recentValues[j].value
             });
         }
     }
 
+    // Sort data points by timestamp to ensure proper line connections
+    temperatureDataPoints.sort((a, b) => a.x - b.x);
+    humidityDataPoints.sort((a, b) => a.x - b.x);
+    aqiDataPoints.sort((a, b) => a.x - b.x);
+
     console.log("Temperature data points:", temperatureDataPoints);
     console.log("Humidity data points:", humidityDataPoints);
     console.log("AQI data points:", aqiDataPoints)
-    
+
+    // Format time range display
+    const getTimeRangeText = () => {
+        if (timeRangeDays >= 365) {
+            return `Showing data from the last ${Math.floor(timeRangeDays / 365)} year(s)`;
+        } else if (timeRangeDays >= 30) {
+            return `Showing data from the last ${Math.floor(timeRangeDays / 30)} month(s)`;
+        } else {
+            return `Showing data from the last ${timeRangeDays} days`;
+        }
+    };
+
     const options = {
 			theme: "light2",
 			backgroundColor: "#fdfaf6",
@@ -63,7 +96,7 @@ function SpineChart({title, data}) {
 				text: title
 			},
 			subtitles: [{
-				text: "Click Legend to Hide or Unhide Data Series",
+				text: `${getTimeRangeText()} • Click Legend to Hide or Unhide Data Series`,
 				fontSize: 12
 			}],
 			axisX: {
