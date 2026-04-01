@@ -23,6 +23,7 @@ function BarChart({title, data}) {
             style: {},
 			title:{
 				text: title,
+                fontColor: "#312e81",  
                 textAlign: "center",
                 padding: 10,
                 margin: 15,
@@ -60,7 +61,7 @@ function BarChart({title, data}) {
     
     return (
         <>
-        <div style={{ display:'flex', justifyContent: 'center', width: '800px', margin: '0 auto',}}>
+        <div style={{ display:'flex', borderRadius: '50%', justifyContent: 'center', width: '80%', margin: '0 auto',}}>
             <CanvasJSChart options={options}/>
         </div>
         </>

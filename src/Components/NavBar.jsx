@@ -3,7 +3,7 @@ import { Nav, Navbar, NavbarBrand, NavbarToggle, NavbarCollapse, Container } fro
 
 function NavBar () {
     return (
-        <Navbar expand="lg" className="bg-blue-200 border-gray-700 rounded-lg font-mono">
+        <Navbar expand="lg" className="bg-blue-200 border-gray-700 rounded-lg font-sans">
             <Container>
                 <Navbar.Brand as={Link} to="/">
                     <img

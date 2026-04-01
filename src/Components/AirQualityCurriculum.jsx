@@ -1,7 +1,7 @@
 function AirQualityCurriculum() {
   return (
     <>
-       <div style={{ padding: "1rem 0", fontFamily: "var(--font-mono)" }}>
+       <div style={{ padding: "1rem 0", fontFamily: "var(--font-sans)" }}>
         <p className="text-2xl">Air Quality Monitoring Curriculum</p>
         <table
           className="table table-bordered table-hover align-middle"

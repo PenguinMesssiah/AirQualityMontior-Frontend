@@ -22,7 +22,7 @@ const ImageSetOne = [
 function AEUCarousel() {
     return (
     <>
-        <div className="font-mono">            
+        <div className="font-sans">            
             <Carousel>
             {/* Carousel */}
                 {ImageSetOne.map((item, index) => 
