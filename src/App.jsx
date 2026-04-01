@@ -6,6 +6,7 @@ import Footer from './Components/Footer'
 import { Routes, Route } from 'react-router-dom'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './bootstrap-custom.css';  // Custom Bootstrap theme with indigo-900
 
 function AirQualityDashboard() {
     return (

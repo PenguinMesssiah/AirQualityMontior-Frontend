@@ -1,0 +1,95 @@
+/* Custom Bootstrap theme overrides to match Tailwind indigo-900 (#312e81) */
+
+:root {
+  /* Override Bootstrap's primary color to match Tailwind's indigo-900 */
+  --bs-primary: #312e81;
+  --bs-primary-rgb: 49, 46, 129;
+
+  /* Adjust primary variants for better consistency */
+  --bs-primary-bg-subtle: #e0e7ff;  /* indigo-100 for subtle backgrounds */
+  --bs-primary-border-subtle: #c7d2fe;  /* indigo-200 for subtle borders */
+
+  /* Text colors */
+  --bs-primary-text: #312e81;
+  --bs-primary-text-emphasis: #1e1b4b;  /* indigo-950 for emphasis */
+
+  /* Link colors */
+  --bs-link-color: #312e81;
+  --bs-link-hover-color: #1e1b4b;  /* Darker on hover */
+}
+
+/* Ensure primary backgrounds work correctly */
+.bg-primary {
+  background-color: #312e81 !important;
+}
+
+.bg-offwhite {
+  background-color: #fdfaf6 !important;
+  
+}
+.text-primary {
+  color: #312e81 !important;
+}
+
+.btn-primary {
+  background-color: #312e81;
+  border-color: #312e81;
+}
+
+.btn-primary:hover {
+  background-color: #1e1b4b;  /* indigo-950 on hover */
+  border-color: #1e1b4b;
+}
+
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: #1e1b4b;
+  border-color: #1e1b4b;
+}
+
+.badge.bg-primary {
+  background-color: #312e81 !important;
+}
+
+.alert-primary {
+  background-color: #e0e7ff;
+  border-color: #c7d2fe;
+  color: #312e81;
+}
+
+.border-primary {
+  border-color: #312e81 !important;
+}
+
+/* Card header with primary background */
+.card-header.bg-primary {
+  background-color: #312e81 !important;
+  border-color: #312e81 !important;
+}
+
+/* Form controls focus state */
+.form-control:focus,
+.form-select:focus {
+  border-color: #312e81;
+  box-shadow: 0 0 0 0.25rem rgba(49, 46, 129, 0.25);
+}
+
+/* Nav links and tabs */
+.nav-link.active {
+  color: #312e81 !important;
+}
+
+.nav-pills .nav-link.active {
+  background-color: #312e81;
+}
+
+/* Progress bars */
+.progress-bar {
+  background-color: #312e81;
+}
+
+/* List group items */
+.list-group-item.active {
+  background-color: #312e81;
+  border-color: #312e81;
+}
