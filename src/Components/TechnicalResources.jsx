@@ -69,12 +69,13 @@ function TechnicalResources() {
               </Accordion.Header>
               <Accordion.Body style={{ background: '#9FE1CB', border: '2px solid #085041', borderTop: 'none' }}>
                 <div style={{ color: '#085041', fontSize: '0.95rem' }}>
-                  <p className="mb-2"><strong>Technology Stack:</strong></p>
+                  <p className="mb-2"><strong>Tech Stack:</strong></p>
                   <ul style={{ marginLeft: '1.5rem', lineHeight: '1.8' }}>
-                    <li><strong>Gunicorn</strong> - WSGI HTTP server for production deployment</li>
-                    <li><strong>Flask</strong> - Python web framework for RESTful API endpoints</li>
+                    <li><strong>Flask</strong> - Python web framework with Flask-CORS</li>
+                    <li><strong>MongoDB</strong> - NoSQL database for time-series data</li>
                     <li><strong>PyMongo</strong> - MongoDB driver for Python</li>
-                    <li><strong>MongoDB</strong> - NoSQL database for time-series environmental data storage</li>
+                    <li><strong>Cloudflare Tunnel</strong> - Secure tunneling for public access</li>
+                    <li><strong>Python 3.x</strong> - Core programming language</li>
                   </ul>
                   <p className="mt-2"><strong>Function:</strong> Receives sensor data via HTTP POST, validates, stores in database, and serves data via REST API</p>
                 </div>
@@ -102,7 +103,7 @@ function TechnicalResources() {
               </Accordion.Header>
               <Accordion.Body style={{ background: '#B5D4F4', border: '2px solid #0C447C', borderTop: 'none' }}>
                 <div style={{ color: '#0C447C', fontSize: '0.95rem' }}>
-                  <p className="mb-2"><strong>Technology Stack:</strong></p>
+                  <p className="mb-2"><strong>Tech Stack:</strong></p>
                   <ul style={{ marginLeft: '1.5rem', lineHeight: '1.8' }}>
                     <li><strong>React</strong> - Component-based UI library</li>
                     <li><strong>Vite</strong> - Modern build tool and development server</li>

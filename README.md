@@ -17,6 +17,7 @@ This React-based web application visualizes real-time air quality data collected
 
 ## Tech Stack
 
+### Frontend
 - **React 19** - Modern component-based UI
 - **Vite** - Fast build tool and development server
 - **React Bootstrap** - UI component library
@@ -24,6 +25,13 @@ This React-based web application visualizes real-time air quality data collected
 - **Leaflet** - Interactive mapping
 - **Recharts** - Data visualization
 - **Tailwind CSS** - Utility-first styling
+
+### Backend
+- **Flask** - Python web framework with Flask-CORS
+- **MongoDB** - NoSQL database for time-series data
+- **PyMongo** - MongoDB driver for Python
+- **Cloudflare Tunnel** - Secure tunneling for public access
+- **Python 3.x** - Core programming language
 
 ## Getting Started
 
