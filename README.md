@@ -1,16 +1,130 @@
-# React + Vite
+# Air Quality Monitoring System - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A community-driven air quality monitoring dashboard built in collaboration with Arts Excursion Unlimited and Carnegie Mellon University's Social Haptics Robotics & Education Lab, serving the Greenfield, Hazelwood, and Glen-Hazel neighborhoods of Pittsburgh.
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This React-based web application visualizes real-time air quality data collected from custom-built monitoring units deployed throughout the Greater Hazelwood area. The dashboard provides EPA AQI-compliant data visualization, empowering residents to make informed decisions about their health and safety.
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Real-time Air Quality Monitoring** - Live data from distributed sensor network
+- **EPA AQI Compliance** - Color-coded air quality indicators following EPA standards
+- **Interactive Maps** - Leaflet-powered visualization of sensor locations
+- **Time-Series Charts** - Historical data analysis with filtering capabilities
+- **Responsive Design** - Mobile-friendly interface built with React Bootstrap
+- **Educational Resources** - Workshop curriculum and assembly guides
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **React 19** - Modern component-based UI
+- **Vite** - Fast build tool and development server
+- **React Bootstrap** - UI component library
+- **React Router** - Client-side routing
+- **Leaflet** - Interactive mapping
+- **Recharts** - Data visualization
+- **Tailwind CSS** - Utility-first styling
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v16 or higher)
+- npm or yarn
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/YOUR_USERNAME/AirQualityMontior-Frontend.git
+cd AirQualityMontior-Frontend
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+The application will be available at `http://localhost:5173`
+
+### Build for Production
+
+```bash
+npm run build
+npm run preview
+```
+
+## Project Structure
+
+```
+src/
+├── Components/       # Reusable React components
+│   ├── AEUCarousel.jsx
+│   ├── AirQualityCurriculum.jsx
+│   ├── BarChart.jsx
+│   ├── CommunityVoices.jsx
+│   ├── Dropdown.jsx
+│   ├── Footer.jsx
+│   ├── NavBar.jsx
+│   ├── OverviewCard.jsx
+│   ├── SpineChart.jsx
+│   └── TechnicalResources.jsx
+├── Pages/           # Page-level components
+│   ├── AboutUs.jsx
+│   └── Dashboard.jsx
+├── assets/          # Static assets (images, icons)
+├── utils/           # Utility functions
+└── App.jsx          # Main application component
+```
+
+## API Integration
+
+This frontend connects to a Flask-based REST API hosted on a Raspberry Pi backend. Configure the API endpoint in your environment:
+
+```javascript
+// Update API endpoint in your configuration
+const API_BASE_URL = 'http://YOUR_BACKEND_IP:5000/api'
+```
+
+## Contributing
+
+We welcome contributions from the community! This project was built through collaborative learning, and we encourage others to participate.
+
+### Development Guidelines
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## Acknowledgments
+
+- **Arts Excursion Unlimited** - Community partnership and workshop facilitation
+- **Carnegie Mellon University SHARE Lab** - Technical guidance and research support
+- **Greenfield, Hazelwood, and Glen-Hazel Community Members** - Active participation and invaluable feedback
+
+## Related Repositories
+
+- [Backend Repository](https://github.com/YOUR_USERNAME/AirQualityMonitor-Backend) - Flask API and data storage
+- [Arduino Firmware](https://github.com/YOUR_USERNAME/AirQualityMonitor-Firmware) - Sensor code for Feather M4
+- [3D Enclosure Files](https://github.com/YOUR_USERNAME/AirQualityMonitor-Enclosure) - STL files for 3D printing
+
+## Resources
+
+- [Workshop Curriculum](LINK_TO_CURRICULUM) - Complete educational materials
+- [Assembly Guide](LINK_TO_ASSEMBLY) - Step-by-step hardware build instructions
+- [Project Website](LINK_TO_LIVE_SITE) - Live dashboard
+
+## Contact
+
+For questions or collaboration opportunities, please open an issue or contact the project maintainers.
+
+---
+
+*Built with ❤️ by the Greater Hazelwood community*

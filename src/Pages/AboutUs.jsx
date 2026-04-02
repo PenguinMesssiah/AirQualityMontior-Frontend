@@ -3,6 +3,7 @@ import Tabs from 'react-bootstrap/Tabs';
 import AEUCarousel from '@/Components/AEUCarousel';
 import AirQualityCurriculum from '@/Components/AirQualityCurriculum';
 import CommunityVoices from '@/Components/CommunityVoices';
+import TechnicalResources from '@/Components/TechnicalResources';
 
 function AboutUs() {
     return (
@@ -42,11 +43,11 @@ function AboutUs() {
                             </p>
 
                             <hr></hr>
-                            <p className="flex pt-1 font-semibold text-3xl">Results</p>
+                            <p className="flex pt-1 font-semibold text-3xl">Results & Testimonials</p>
                             <CommunityVoices></CommunityVoices>
                         </Tab>
                         <Tab eventKey="How" title="Resources | How did we do it?">
-                            Tab content for Slides & Assembly Photos 
+                            <TechnicalResources />
                         </Tab>
                     </Tabs>
                 </div>
