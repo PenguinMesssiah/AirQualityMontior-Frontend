@@ -36,7 +36,7 @@ This React-based web application visualizes real-time air quality data collected
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/AirQualityMontior-Frontend.git
+git clone https://github.com/PenguinMesssiah/AirQualityMontior-Frontend.git
 cd AirQualityMontior-Frontend
 
 # Install dependencies
@@ -46,7 +46,7 @@ npm install
 npm run dev
 ```
 
-The application will be available at `http://localhost:5173`
+The application will be available at `https://artsexcursionairquality.org`
 
 ### Build for Production
 
@@ -84,7 +84,7 @@ This frontend connects to a Flask-based REST API hosted on a Raspberry Pi backen
 
 ```javascript
 // Update API endpoint in your configuration
-const API_BASE_URL = 'http://YOUR_BACKEND_IP:5000/api'
+const API_BASE_URL = 'https://artsexcursionairquality.org:5000/api'
 ```
 
 ## Contributing
@@ -111,15 +111,15 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## Related Repositories
 
-- [Backend Repository](https://github.com/YOUR_USERNAME/AirQualityMonitor-Backend) - Flask API and data storage
-- [Arduino Firmware](https://github.com/YOUR_USERNAME/AirQualityMonitor-Firmware) - Sensor code for Feather M4
-- [3D Enclosure Files](https://github.com/YOUR_USERNAME/AirQualityMonitor-Enclosure) - STL files for 3D printing
+- [Backend Repository](https://github.com/PenguinMesssiah/HazelwoodServer) - Flask API and data storage
+- [Arduino Firmware](https://drive.google.com/file/d/1hvZsCnCgavwJCYUJWfIVS5v6UL0-1wS7/view?usp=drive_link) - Sensor code for Feather M4
+- [3D Enclosure](https://www.adafruit.com/product/3931) - Flanged Weatherproof Enclosure
 
 ## Resources
 
 - [Workshop Curriculum](LINK_TO_CURRICULUM) - Complete educational materials
 - [Assembly Guide](LINK_TO_ASSEMBLY) - Step-by-step hardware build instructions
-- [Project Website](LINK_TO_LIVE_SITE) - Live dashboard
+- [Project Website](https://artsexcursionairquality.org) - Live dashboard
 
 ## Contact
 
