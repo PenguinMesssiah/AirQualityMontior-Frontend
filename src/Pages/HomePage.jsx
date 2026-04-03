@@ -62,7 +62,7 @@ function HomePage() {
     return (
     <>
         <main className="flex-1 min-w-full max-w-screen font-sans text-indigo-900 bg-inherit">
-          <p className="flex pt-4 pb-2 font-semibold text-4xl">Greater Hazelwood | Air Quality Monitoring</p>
+          <p className="flex pt-4 pb-2 font-semibold text-4xl">Hazelwood | Air Quality Monitoring</p>
 
           {/*Leaflet Map*/}
           <MapContainer
