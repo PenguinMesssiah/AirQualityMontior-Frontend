@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import { motivation, motivationSource } from '@/text/textFile'
 import OverviewCard from '@/Components/OverviewCard'
+import MapDataCard from '@/Components/MapDataCard';
 import { fetchJsonWithRetry } from '@/utils/fetchWithRetry'
 import 'leaflet/dist/leaflet.css'
 
@@ -64,23 +65,35 @@ function HomePage() {
         <main className="flex-1 min-w-full max-w-screen font-sans text-indigo-900 bg-inherit">
           <p className="flex pt-4 pb-2 font-semibold text-4xl">Hazelwood | Air Quality Monitoring</p>
 
-          {/*Leaflet Map*/}
-          <MapContainer
-            center={[40.40666, -79.94271]}
-            zoom={13}
-            className="max-w-full rounded-md pb-6"
-            style={{ height: '400px'}}
-          >
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          {/* Map Container Wrapper - Required for absolute positioning of overlay card */}
+          <div style={{ position: 'relative' }}>
+            <MapDataCard
+              locationName="Arts Excursion Unlimited"
+              aqi={45}
+              temperature={68}
+              humidity={55}
+              isVisible={true}
+              onClose={() => setCardVisible(false)}
             />
-            <Marker position={[40.40666, -79.94271]}>
-              <Popup>
-                Arts Excusion Unlimited <br/>Base Station!
-              </Popup>
-            </Marker>
-          </MapContainer>
+
+            {/*Leaflet Map*/}
+            <MapContainer
+              center={[40.40666, -79.94271]}
+              zoom={13}
+              className="max-w-full rounded-md pb-6"
+              style={{ height: '500px'}}
+            >
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              <Marker position={[40.40666, -79.94271]}>
+                <Popup>
+                  Arts Excusion Unlimited <br/>Base Station!
+                </Popup>
+              </Marker>
+            </MapContainer>
+          </div>
           
           <hr></hr>
           <p className="flex  font-medium text-2xl">Community Air Quality Tracking Using EPA AQI Standards</p>
