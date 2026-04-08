@@ -219,16 +219,24 @@ function TechnicalResources() {
                   Access all workshop presentation materials covering electricity basics through full system integration:
                 </p>
                 <ul style={{ lineHeight: '2', color: 'var(--color-text-secondary)' }}>
-                  <li><a href="#" style={{ color: '#0C447C' }}>Week 1: Electricity & Electronics Fundamentals</a></li>
-                  <li><a href="#" style={{ color: '#0C447C' }}>Week 2: Programming in Arduino IDE</a></li>
-                  <li><a href="#" style={{ color: '#0C447C' }}>Week 3: Communication Protocols (I2C, SPI, UART)</a></li>
-                  <li><a href="#" style={{ color: '#0C447C' }}>Week 4: BME280 Sensor Integration</a></li>
-                  <li><a href="#" style={{ color: '#0C447C' }}>Week 5: Air Quality & Environmental Justice Discussion</a></li>
-                  <li><a href="#" style={{ color: '#0C447C' }}>Week 6: PM2.5 Sensor Integration</a></li>
-                  <li><a href="#" style={{ color: '#0C447C' }}>Week 7-8: Soldering & Full Board Assembly</a></li>
-                  <li><a href="#" style={{ color: '#0C447C' }}>Week 9: Object-Oriented Programming</a></li>
-                  <li><a href="#" style={{ color: '#0C447C' }}>Week 10-12: WiFi Connectivity & ESP32</a></li>
-                  <li><a href="#" style={{ color: '#0C447C' }}>Week 13-14: HTTP Protocols & Web Integration</a></li>
+                  <li><a target="_blank" href="https://docs.google.com/presentation/d/1pH7JUPhOq5Zae4a-dEeQkdlfa92PQF8uGnGvTzCD8TQ/edit?usp=sharing" style={{ color: '#0C447C' }}>Full Guide: Overview & Soldering</a></li>                  
+                  <p className='italic text-sm'>
+                    <strong>Note:</strong> Lessons were originally taught with the DHT20 Temperature/Humidity Sensor, ESP32 WiFi Co-Processor Breakout, and Metro328 Microcontroller 
+                    for their educational benefits. The final assembly utilizes the BME280 and the Feather M4 Express for their smaller form factor and higher compatability. 
+                  </p>
+                  <li><a target="_blank" href="https://docs.google.com/presentation/d/1SXKhsf37YdQKHS6LLVJYP8vWC8YiyTBNZTPgGtc8JVY/edit?usp=sharing" style={{ color: '#0C447C' }}>Week 1: Electricity & Electronics Fundamentals</a></li>
+                  <li><a target="_blank" href="https://docs.google.com/presentation/d/1vjgNcDupHP59h_oiUa0pMOdFUTTiTGH4aKfoUmkXm0M/edit?usp=sharing" style={{ color: '#0C447C' }}>Week 2: Programming in Arduino IDE</a></li>
+                  <li><a target="_blank" href="https://docs.google.com/presentation/d/1m1q06rhK5h-F6F0vk1a7PS4G7b-8hyPf5AAk4lAFi2A/edit?usp=sharing" style={{ color: '#0C447C' }}>Week 3: Communication Protocols (I2C, SPI, UART)</a></li>
+                  <li><a target="_blank" href="https://docs.google.com/presentation/d/1pH7JUPhOq5Zae4a-dEeQkdlfa92PQF8uGnGvTzCD8TQ/edit?usp=sharing" style={{ color: '#0C447C' }}>Week 4: BME280 Sensor Integration</a></li>
+                  <li><a target="_blank" href="https://docs.google.com/presentation/d/1mmoysfW83SLSiK5DZT1TYDzvZVOhqd-1xVBBANkmNfw/edit?usp=sharing" style={{ color: '#0C447C' }}>Week 5: Air Quality & Environmental Justice Discussion</a></li>
+                  <li><a target="_blank" href="https://docs.google.com/presentation/d/1mmoysfW83SLSiK5DZT1TYDzvZVOhqd-1xVBBANkmNfw/edit?usp=sharing" style={{ color: '#0C447C' }}>Week 6: PM2.5 Sensor Integration</a></li>
+                  <li><a target="_blank" href="https://docs.google.com/presentation/d/1pH7JUPhOq5Zae4a-dEeQkdlfa92PQF8uGnGvTzCD8TQ/edit?usp=sharing" style={{ color: '#0C447C' }}>Week 7-8: Soldering & Full Board Assembly</a></li>
+                  <li><a target="_blank" href="https://docs.google.com/presentation/d/19mGSvsa6HftqjbjT-gIrnkcuaLSLBWj2p-aVMRsS1ck/edit?usp=sharing" style={{ color: '#0C447C' }}>Week 9: Object-Oriented Programming</a></li>
+                  <li><a target="_blank" href="https://docs.google.com/presentation/d/1JLfr0hfwz9Cb6lZ8HbTYn6mZQerZs9K58BboRx8NqDw/edit?usp=sharing" style={{ color: '#0C447C' }}>Week 10: WiFi Connectivity & ESP32</a></li>
+                  <li><a target="_blank" href="https://docs.google.com/presentation/d/14nja7qbDrw6mMaKbitmffAdPmMH5OJB-C0JovrZURDY/edit?usp=sharing" style={{ color: '#0C447C' }}>Week 11: WiFi Connectivity & ESP32</a></li>
+                  <li><a target="_blank" href="https://docs.google.com/presentation/d/1IywkPhMOOG_dXoiJHNGKoNb52iV6VKCe-Xe9Efx_s2s/edit?usp=sharing" style={{ color: '#0C447C' }}>Week 12: WiFi Connectivity & ESP32</a></li>
+                  <li><a target="_blank" href="https://docs.google.com/presentation/d/1HRhs2e7-0qiE-oln06GQu2lrcETxW0TG9BxLv9Kh-GI/edit?usp=sharing" style={{ color: '#0C447C' }}>Week 13: HTTP Protocols & Web Integration</a></li>
+                  <li><a target="_blank" href="https://docs.google.com/presentation/d/1x9pM9920GW2eExwpH__j_UO0SzR9Z_ZQKmw3R2FhcyI/edit?usp=sharing" style={{ color: '#0C447C' }}>Week 14: HTTP Protocols & Web Integration</a></li>
                 </ul>
               </Accordion.Body>
             </Accordion.Item>
@@ -370,7 +378,7 @@ function TechnicalResources() {
           <h2 className="text-2xl font-bold mb-3" style={{ color: "var(--color-text-primary)" }}>
             Acknowledgments
           </h2>
-          <Card style={{ background: '#FAC775', border: '2px solid #633806' }}>
+          <Card style={{ background: '#f7daacff', border: '2px solid #633806' }}>
             <Card.Body>
               <p style={{ color: '#633806', marginBottom: '0.75rem' }}>
                 This project was made possible through the collaborative efforts of:

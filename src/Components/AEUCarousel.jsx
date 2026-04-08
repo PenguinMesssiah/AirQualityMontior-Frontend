@@ -13,10 +13,14 @@ const ImageSetOne = [
     {   name: "Knowledge Transfer", 
         src: "src/assets/photos/PXL_20250315_202309417.jpg",
         caption: "Engaged community memebers learning fundamental server operations including endpoint creation", },
-    {   name: "Peer Support", 
-        src: "src/assets/photos/PXL_20250315_203646393.MP.jpg",
-        caption: "Concise explinations supported by peers, grounded in direct application",
+    {   name: "System Assembly | \n PM2.5 Sensor", 
+        src: "src/assets/photos/20260403_181654.jpg", 
+        caption: "Soldering and pin congifuration are core activites practiced by community members", 
     },
+    {   name: "System Assembly | \n BME280 Integration", 
+        src: "src/assets/photos/20260403_183933.jpg", 
+        caption: "Soldering and pin congifuration are core activites practiced by community members", 
+    },    
 ]
 
 function AEUCarousel() {
