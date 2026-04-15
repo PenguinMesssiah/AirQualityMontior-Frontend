@@ -5,14 +5,8 @@ function NavBar () {
     return (
         <Navbar expand="lg" className="bg-blue-200 border-gray-700 rounded-lg font-sans">
             <Container>
-                <Navbar.Brand as={Link} to="/">
-                    <img
-                        src="/src/assets/photos/AEU1_scaled.png"
-                        width="30"
-                        height="30"
-                        className="d-inline-block align-top"
-                        alt="Arts Excusion Unlimited"
-                    />
+                <Navbar.Brand as={Link} to="/" className='text-primary font-bold'>
+                    Arts Excursion Unlimited
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
