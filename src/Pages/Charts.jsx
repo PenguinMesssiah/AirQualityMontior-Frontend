@@ -23,7 +23,7 @@ function ChartsPage() {
                 setLoading(true);
                 setAlertMessage(null);
 
-                const json = await fetchJsonWithRetry(`${baseURL}/sensor_data`);
+                const json = await fetchJsonWithRetry(`${baseURL}/api/sensor_data`);
                 console.log("received data = ", json)
                 setData(json);
             } catch (err) {
@@ -50,7 +50,7 @@ function ChartsPage() {
                 setLoading(true);
                 setAlertMessage(null);
 
-                const json = await fetchJsonWithRetry(`${baseURL}/sensor_data/${selectedDevice}`);
+                const json = await fetchJsonWithRetry(`${baseURL}/api/sensor_data/${selectedDevice}`);
                 setDeviceData(json);
             } catch (err) {
                 const errorMsg = err instanceof Error ? err.message : "Unknown Error Retrieving Device Data";

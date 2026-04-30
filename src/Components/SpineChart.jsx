@@ -29,7 +29,8 @@ function SpineChart({title, data, timeRangeDays = 30}) {
     // Filter data by type
     const rawTemperatureData = data.filter((item) => item.type === "temperature");
     const rawHumidityData = data.filter((item) => item.type === "humidity");
-    const rawAQIData = data.filter((item) => item.type === "aqi_pm25");
+    const rawAQIData25 = data.filter((item) => item.type === "aqi_pm25");
+	const rawAQIData10 = data.filter((item) => item.type === "aqi_pm100")
 
     // Process Temperature data (convert Celsius to Fahrenheit)
     const temperatureDataPoints = [];
@@ -56,12 +57,24 @@ function SpineChart({title, data, timeRangeDays = 30}) {
         }
     }
 
-    // Process AQI data
-    const aqiDataPoints = [];
-    for (let i = 0; i < rawAQIData.length; i++) {
-        const recentValues = filterRecentData(rawAQIData[i].values, timeRangeDays);
+    // Process AQI data (2.5)
+    const aqiDataPoints25 = [];
+    for (let i = 0; i < rawAQIData25.length; i++) {
+        const recentValues = filterRecentData(rawAQIData25[i].values, timeRangeDays);
         for (let j = 0; j < recentValues.length; j++) {
-            aqiDataPoints.push({
+            aqiDataPoints25.push({
+                x: new Date(recentValues[j].timestamp),
+                y: recentValues[j].value
+            });
+        }
+    }
+
+	// Process AQI data (10)
+    const aqiDataPoints10 = [];
+    for (let i = 0; i < rawAQIData10.length; i++) {
+        const recentValues = filterRecentData(rawAQIData10[i].values, timeRangeDays);
+        for (let j = 0; j < recentValues.length; j++) {
+            aqiDataPoints10.push({
                 x: new Date(recentValues[j].timestamp),
                 y: recentValues[j].value
             });
@@ -71,11 +84,12 @@ function SpineChart({title, data, timeRangeDays = 30}) {
     // Sort data points by timestamp to ensure proper line connections
     temperatureDataPoints.sort((a, b) => a.x - b.x);
     humidityDataPoints.sort((a, b) => a.x - b.x);
-    aqiDataPoints.sort((a, b) => a.x - b.x);
+    aqiDataPoints25.sort((a, b) => a.x - b.x);
+	aqiDataPoints10.sort((a, b) => a.x - b.x);
 
     console.log("Temperature data points:", temperatureDataPoints);
     console.log("Humidity data points:", humidityDataPoints);
-    console.log("AQI data points:", aqiDataPoints)
+    console.log("AQI data points:", aqiDataPoints25)
 
     // Format time range display
     const getTimeRangeText = () => {
@@ -121,11 +135,18 @@ function SpineChart({title, data, timeRangeDays = 30}) {
 				suffix: "%"
 			},
 			{
-				title: "AQI",
+				title: "PM2.5 AQI",
 				titleFontColor: "#6D78AD",
 				lineColor: "#6D78AD",
 				labelFontColor: "#6D78AD",
 				tickColor: "#6D78AD"
+			},
+			{
+				title: "PM10 AQI",
+				titleFontColor: "#D4881A",
+				lineColor: "#D4881A",
+				labelFontColor: "#D4881A",
+				tickColor: "#D4881A"
 			}],
 			toolTip: {
 				shared: true
@@ -163,14 +184,25 @@ function SpineChart({title, data, timeRangeDays = 30}) {
 			},
 			{
 				type: "spline",
-				name: "AQI",
+				name: "AQI (PM2.5)",
 				color: "#6D78AD",
 				axisYType: "secondary",
 				axisYIndex: 1,
 				showInLegend: true,
 				xValueFormatString: "MMM DD, YYYY HH:mm",
 				yValueFormatString: "#,##0.##",
-				dataPoints: aqiDataPoints
+				dataPoints: aqiDataPoints25
+			},
+			{
+				type: "spline",
+				name: "AQI (PM10)",
+				color: "#D4881A",
+				axisYType: "secondary",
+				axisYIndex: 2,
+				showInLegend: true,
+				xValueFormatString: "MMM DD, YYYY HH:mm",
+				yValueFormatString: "#,##0.##",
+				dataPoints: aqiDataPoints10
 			}]
         }
             

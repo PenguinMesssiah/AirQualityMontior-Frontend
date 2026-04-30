@@ -11,6 +11,8 @@ const baseURL = "https://artsexcursionairquality.org"
 function HomePage() {
     const [deviceCount, setDeviceCount] = useState(null);
     const [lastReading, setLastReading] = useState(null);
+    const [markerList, setMarkerList] = useState(null);
+    const [selectedDevice, setSelectedDevice] = useState(null);
     const [serverStatus, setServerStatus] = useState('unknown');
     const [loading, setLoading] = useState(true);
 
@@ -20,7 +22,7 @@ function HomePage() {
                 setLoading(true);
 
                 // Fetch sensor data to get device count and last reading
-                const json = await fetchJsonWithRetry(`${baseURL}/sensor_data`);
+                const json = await fetchJsonWithRetry(`${baseURL}/api/sensor_data`);
                 console.log("received data = ", json)
                 // Set device count
                 setDeviceCount(json.length);
@@ -38,6 +40,23 @@ function HomePage() {
                         setLastReading(mostRecent);
                     }
                 }
+                
+                //Set Marker List
+                var markerList = json.map((item, index) => {
+                  const displayName = item.device_name === "Edith" ? "Arts Excursion Unlimited" : `Device #${index}`;
+                  const enrichedItem = { ...item, displayName };
+                  return (
+                    <Marker
+                      position={[item.lat, item.lon]}
+                      key={index}
+                      eventHandlers={{click: () => setSelectedDevice(enrichedItem)}}>
+                      <Popup>{displayName}</Popup>
+                    </Marker>
+                  );
+                })
+                setMarkerList(markerList);
+                const edithIndex = json.findIndex((item) => item.device_name === "Edith");
+                if (edithIndex !== -1) setSelectedDevice({ ...json[edithIndex], displayName: "Arts Excursion Unlimited" });
 
                 // Server is online if we successfully fetched data
                 setServerStatus('online');
@@ -60,6 +79,18 @@ function HomePage() {
         }
     },[lastReading])
 
+    useEffect(() => {
+      if(selectedDevice != null) {
+        console.log("selectedDevice = ", selectedDevice)
+      }
+    }, [selectedDevice])
+
+    useEffect(() => {
+      if(markerList != null) {
+        console.log("markerList = ", markerList)
+      }
+    },[markerList])
+    
     return (
     <>
         <main className="flex-1 min-w-full max-w-screen font-sans text-indigo-900 bg-inherit">
@@ -68,12 +99,12 @@ function HomePage() {
           {/* Map Container Wrapper - Required for absolute positioning of overlay card */}
           <div style={{ position: 'relative' }}>
             <MapDataCard
-              locationName="Arts Excursion Unlimited"
-              aqi={45}
-              temperature={68}
-              humidity={55}
-              isVisible={true}
-              onClose={() => setCardVisible(false)}
+              locationName={selectedDevice?.displayName ?? "Select a Location"}
+              aqi={selectedDevice?.device_quality ?? null}
+              temperature={Math.round((selectedDevice?.temperature * 9/5) + 32) ?? null}
+              humidity={Math.round(selectedDevice?.humidity) ?? null}
+              isVisible={selectedDevice !== null}
+              onClose={() => setSelectedDevice(null)}
             />
 
             {/*Leaflet Map*/}
@@ -87,11 +118,7 @@ function HomePage() {
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
-              <Marker position={[40.40666, -79.94271]}>
-                <Popup>
-                  Arts Excusion Unlimited <br/>Base Station!
-                </Popup>
-              </Marker>
+              {markerList}
             </MapContainer>
           </div>
           
