@@ -9,9 +9,17 @@ export default defineConfig({
       tailwindcss(),
       react()
     ],
-    resolve: {
+  resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  optimizeDeps: {
+    include: ['canvasjs/react-charts']
+  },
+  build: {
+    commonjsOptions: {
+      transformMixedEsModules: true
+    }
+  }
 })
