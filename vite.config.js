@@ -20,6 +20,12 @@ export default defineConfig({
   build: {
     commonjsOptions: {
       transformMixedEsModules: true
+    },
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true
+      }
     }
   }
 })
