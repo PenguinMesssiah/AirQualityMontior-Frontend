@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react'
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { Marker, Popup } from 'react-leaflet'
 import { motivation, motivationSource } from '@/text/textFile'
 import OverviewCard from '@/Components/OverviewCard'
-import MapDataCard from '@/Components/MapDataCard';
+import MapSection from '@/Components/MapSection';
 import { fetchJsonWithRetry } from '@/utils/fetchWithRetry'
-import 'leaflet/dist/leaflet.css'
 
 const baseURL = "https://artsexcursionairquality.org"
 
@@ -96,31 +95,11 @@ function HomePage() {
         <main className="flex-1 min-w-full max-w-screen font-sans text-indigo-900 bg-inherit">
           <p className="flex pt-4 pb-2 font-semibold text-4xl">Hazelwood | Air Quality Monitoring</p>
 
-          {/* Map Container Wrapper - Required for absolute positioning of overlay card */}
-          <div style={{ position: 'relative' }}>
-            <MapDataCard
-              locationName={selectedDevice?.displayName ?? "Select a Location"}
-              aqi={selectedDevice?.device_quality ?? null}
-              temperature={Math.round((selectedDevice?.temperature * 9/5) + 32) ?? null}
-              humidity={Math.round(selectedDevice?.humidity) ?? null}
-              isVisible={selectedDevice !== null}
-              onClose={() => setSelectedDevice(null)}
-            />
-
-            {/*Leaflet Map*/}
-            <MapContainer
-              center={[40.40666, -79.94271]}
-              zoom={13}
-              className="max-w-full rounded-md pb-6"
-              style={{ height: '500px'}}
-            >
-              <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              />
-              {markerList}
-            </MapContainer>
-          </div>
+          <MapSection
+            markerList={markerList}
+            selectedDevice={selectedDevice}
+            onClose={() => setSelectedDevice(null)}
+          />
           
           <hr></hr>
           <p className="flex  font-medium text-2xl">Community Air Quality Tracking Using EPA AQI Standards</p>
