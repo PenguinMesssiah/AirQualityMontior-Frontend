@@ -248,42 +248,42 @@ function TechnicalResources() {
               <Accordion.Body style={{ background: 'var(--color-background-secondary)' }}>
                 <Row className="g-3">
                   <Col xs={6} md={4}>
-                    <img src="/src/assets/photos/feather_board.jpg" alt="Feather M4 Board"
+                    <img src="/photos/feather_board.jpg" alt="Feather M4 Board"
                          style={{ width: '100%', borderRadius: '4px', border: '1px solid #ddd' }} />
                     <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)', marginTop: '0.5rem' }}>
                       Feather M4 Express Board
                     </p>
                   </Col>
                   <Col xs={6} md={4}>
-                    <img src="/src/assets/photos/airlift_board.jpg" alt="AirLift Board"
+                    <img src="/photos/airlift_board.jpg" alt="AirLift Board"
                          style={{ width: '100%', borderRadius: '4px', border: '1px solid #ddd' }} />
                     <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)', marginTop: '0.5rem' }}>
                       AirLift FeatherWing
                     </p>
                   </Col>
                   <Col xs={6} md={4}>
-                    <img src="/src/assets/photos/bme280_starter.jpg" alt="BME280 Initial Setup"
+                    <img src="/photos/bme280_starter.jpg" alt="BME280 Initial Setup"
                          style={{ width: '100%', borderRadius: '4px', border: '1px solid #ddd' }} />
                     <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)', marginTop: '0.5rem' }}>
                       BME280 Sensor Preparation
                     </p>
                   </Col>
                   <Col xs={6} md={4}>
-                    <img src="/src/assets/photos/bme280_complete_solder.jpg" alt="BME280 Soldered"
+                    <img src="/photos/bme280_complete_solder.jpg" alt="BME280 Soldered"
                          style={{ width: '100%', borderRadius: '4px', border: '1px solid #ddd' }} />
                     <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)', marginTop: '0.5rem' }}>
                       BME280 Soldered Headers
                     </p>
                   </Col>
                   <Col xs={6} md={4}>
-                    <img src="/src/assets/photos/stripped_ribbon_cable.jpg" alt="Ribbon Cable"
+                    <img src="/photos/stripped_ribbon_cable.jpg" alt="Ribbon Cable"
                          style={{ width: '100%', borderRadius: '4px', border: '1px solid #ddd' }} />
                     <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)', marginTop: '0.5rem' }}>
                       Prepared Ribbon Cables
                     </p>
                   </Col>
                   <Col xs={6} md={4}>
-                    <img src="/src/assets/photos/assembled_boards.jpg" alt="Assembled Boards"
+                    <img src="/photos/assembled_boards.jpg" alt="Assembled Boards"
                          style={{ width: '100%', borderRadius: '4px', border: '1px solid #ddd' }} />
                     <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)', marginTop: '0.5rem' }}>
                       Fully Assembled Units
